@@ -1,0 +1,15 @@
+#ifndef NANOPIPE_VERSION_HPP
+#define NANOPIPE_VERSION_HPP
+
+/*
+ * This file is automatically genereated, do not manually edit it.
+ */
+
+#define NANOPIPE_VERSION_MAJOR ${NANOPIPE_VERSION_MAJOR}
+#define NANOPIPE_VERSION_MINOR ${NANOPIPE_VERSION_MINOR}
+#define NANOPIPE_VERSION_PATCH ${NANOPIPE_VERSION_PATCH}
+
+#define NANOPIPE_GIT_BRANCH "${GIT_BRANCH}"
+#define NANOPIPE_GIT_COMMIT_HASH "${GIT_COMMIT_HASH}"
+
+#endif
