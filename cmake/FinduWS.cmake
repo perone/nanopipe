@@ -15,7 +15,11 @@ endif(UWS_INCLUDE_DIR)
 
 find_path(UWS_INCLUDE_DIR uWS/uWS.h)
 
-find_library(UWS_LIBRARY NAMES libuWS uWS)
+find_library(UWS_LIBRARY NAMES libuWS uWS
+    PATHS /usr/lib
+          /usr/lib64
+          /usr/local/lib
+          /usr/local/lib64)
 
 # Handle the QUIETLY and REQUIRED arguments and set UWS_FOUND to TRUE if
 # all listed variables are TRUE.
