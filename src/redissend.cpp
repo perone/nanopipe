@@ -16,9 +16,9 @@ bool RedisSend::initialize()
     if (mRedisContext == nullptr || mRedisContext->err)
     {
         if(mRedisContext)
-            LOG(ERROR) << mRedisContext->errstr;
+            LOG(ERROR) << pname(this) << mRedisContext->errstr;
         else
-            LOG(ERROR) << "Cannot allocated Redis context.";
+            LOG(ERROR) << pname(this) << "Cannot allocated Redis context.";
 
         return false;
     }
