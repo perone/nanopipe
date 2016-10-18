@@ -21,6 +21,7 @@
 #include "amqpsource.hpp"
 #include "amqpsend.hpp"
 #include "websocketsource.hpp"
+#include "websocketsend.hpp"
 
 /**
  * @brief Returns the major version of the library.

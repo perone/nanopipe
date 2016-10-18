@@ -26,7 +26,6 @@ public:
 
 private:
     std::string mUri;
-    
     std::shared_ptr<uWS::Hub> mWSHub;
 };
 
