@@ -7,6 +7,9 @@ int main(int argc, char **argv)
     // Instantiate the source and the send
     AMQPSource amqp_source("localhost", 5672, "myqueue");
     MQTTSend mqtt_send("broker.hivemq.com", 1883, "mytopic");
+
+    // Setting the MQTT QoS to 2
+    mqtt_send.setQos(2);
     
     // Connect the send into the source
     amqp_source.addSend(&mqtt_send);
