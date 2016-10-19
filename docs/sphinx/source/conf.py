@@ -131,6 +131,8 @@ html_theme_options = {
     'github_user': 'perone',
     'github_repo': 'nanopipe',
     'github_banner': True,
+    'github_button': True,
+    'github_type': 'star',
 }
 
 
