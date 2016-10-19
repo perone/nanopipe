@@ -13,13 +13,13 @@ NanoMessage::~NanoMessage()
         delete [] mMessageBuffer;
 }
 
-NanoMessage::NanoMessage(const char *data_source, int size)
+NanoMessage::NanoMessage(const char *data_source, size_t size)
 : NanoMessage()
 {
     copyFrom(data_source, size);
 }
 
-void NanoMessage::copyFrom(const char *data_source, int size)
+void NanoMessage::copyFrom(const char *data_source, size_t size)
 {
     if (mMessageBuffer)
         delete [] mMessageBuffer;
@@ -38,6 +38,6 @@ std::string NanoMessage::toString()
 char *NanoMessage::buffer()
 { return mMessageBuffer; }
 
-int NanoMessage::messageSize()
+size_t NanoMessage::messageSize()
 { return mMessageSize; }
 

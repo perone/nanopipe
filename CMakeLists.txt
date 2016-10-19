@@ -13,7 +13,8 @@ if(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
    set(CMAKE_BUILD_TYPE Release)
 endif(NOT CMAKE_CONFIGURATION_TYPES AND NOT CMAKE_BUILD_TYPE)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall")
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 # ---------------------------------------------------------
@@ -28,20 +29,23 @@ find_package(hiredis REQUIRED)
 find_package(libuv REQUIRED)
 find_package(Mosquitto REQUIRED)
 find_package(AMQP REQUIRED)
+find_package(uWS REQUIRED)
 find_package(Doxygen)
 
 set(NANOPIPE_LIB_INCLUDES
   ${HIREDIS_INCLUDE_DIRS}
   ${LIBUV_INCLUDE_DIRS}
   ${MOSQUITTO_INCLUDE_DIR}
-  ${AMQP_INCLUDE_DIR})
+  ${AMQP_INCLUDE_DIR}
+  ${UWS_INCLUDE_DIR})
 
 set(NANOPIPE_LIB_DEPS
   ${HIREDIS_LIBRARIES}
   ${LIBUV_LIBRARIES}
   ${CMAKE_THREAD_LIBS_INIT}
   ${MOSQUITTO_LIBRARIES}
-  ${AMQP_LIBRARIES})
+  ${AMQP_LIBRARIES}
+  ${UWS_LIBRARIES})
 
 # ---------------------------------------------------------
 # Options

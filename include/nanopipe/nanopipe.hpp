@@ -20,6 +20,7 @@
 #include "mqttsource.hpp"
 #include "amqpsource.hpp"
 #include "amqpsend.hpp"
+#include "websocketsource.hpp"
 
 /**
  * @brief Returns the major version of the library.

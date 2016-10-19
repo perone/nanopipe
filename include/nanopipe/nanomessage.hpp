@@ -16,7 +16,7 @@ public:
     typedef std::shared_ptr<NanoMessage::SharedMessageQueue> SharedQueue;
 
 public:
-    NanoMessage(const char *data_source, int size);
+    NanoMessage(const char *data_source, size_t size);
     NanoMessage();
     ~NanoMessage();
 
@@ -28,14 +28,14 @@ public:
     std::string toString();
 
     char *buffer();
-    int messageSize();
+    size_t messageSize();
 
 private:
-    void copyFrom(const char *data_source, int size);
+    void copyFrom(const char *data_source, size_t size);
 
 private:
     char *mMessageBuffer;
-    int mMessageSize;
+    size_t mMessageSize;
 };
 
 #endif

@@ -25,7 +25,7 @@ bool StreamSend::addNewLine() const
 
 void StreamSend::consumeMessage(NanoMessage::SharedMessage message)
 {
-    *mStream << message->buffer();
+    *mStream << std::string(message->buffer(), message->messageSize());
     if (mNewLine)
         *mStream << std::endl;
     return;
