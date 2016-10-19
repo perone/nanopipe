@@ -156,9 +156,18 @@ if (examples)
   add_executable(basic examples/main.cpp)
   target_link_libraries(basic nanopipe)
 
+  add_executable(mqtt_to_redis examples/mqtt_to_redis.cpp)
+  target_link_libraries(mqtt_to_redis nanopipe)
+
+  add_executable(amqp_to_mqtt examples/amqp_to_mqtt.cpp)
+  target_link_libraries(amqp_to_mqtt nanopipe)
+
+
   add_custom_target(examples)
   add_dependencies(examples
     basic
+    mqtt_to_redis
+    amqp_to_mqtt
   )
 
 endif()

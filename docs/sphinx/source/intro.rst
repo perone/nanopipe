@@ -66,6 +66,7 @@ requirements:
 - hiredis >= 0.13.3 `(official site) <https://github.com/redis/hiredis>`_
 - AMQP-CPP >= 2.6.2 `(official site) <https://github.com/CopernicaMarketingSoftware/AMQP-CPP>`_
 - Mosquitto >= 1.4.10 `(official site) <https://github.com/eclipse/mosquitto>`_
+- uWebSocket >= 0.10.12 `(official site) <https://github.com/uWebSockets/uWebSockets>`_
 
 .. note:: Nanopipe uses some bleeding edge version of some of the libraries above. Some
           distributions (such as Ubuntu) has packages only for older versions of these
@@ -154,7 +155,34 @@ all source/send threads.
 
 MQTT Source/Send
 -------------------------------------------------------------------------------
-TODO
+The MQTT Source and Send implemented on Nanopipe is based on Mosquitto library.
+Here is an use case example where we want to get messages from a MQTT broker
+and then publish them on Redis. You can test this example application using
+the `HiveMQ MQTT broker <http://www.hivemq.com/demos/websocket-client/>`_
+where you can use your browser to connect and publish on their broker. You'll
+also need a Redis server instance running.
+
+.. literalinclude:: ../../../examples/mqtt_to_redis.cpp
+   :language: cpp
+   :linenos:
+
+As you can see, the example is very simple and intuitive. We first instantiate
+the source and the send and then we just connect both before starting our
+manager, that will be responsible for executing the graph.
+
+Every message published on the topic **wstopic** on the MQTT broker will be
+sent to the Redis topic **wstopic**. Everything without struggling to write
+glue code.
+
+You can also use the MQTT Send to send messages to a MQTT broker instead
+of using it as a source, here is an example of using it on a problem
+where you want to send messages arriving on a RabbitMQ (AMQP) queue
+to a MQTT broker:
+
+.. literalinclude:: ../../../examples/amqp_to_mqtt.cpp
+   :language: cpp
+   :linenos:
+
 
 AMQP Source/Send
 -------------------------------------------------------------------------------
@@ -169,4 +197,5 @@ C++ Stream Send
 TODO
 
 
-
+WebSocket Source/Send
+-------------------------------------------------------------------------------

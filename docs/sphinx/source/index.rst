@@ -36,7 +36,7 @@ Nanopipe features
 - Simple producer/consumer queues between source/sends, with very low
   synchronization overhead
 - Multiple source/sends share the same message memory
-- Supports AMQP, MQTT, Redis, C++ Streams, (more to come: WebSockets, REST, etc)
+- Supports AMQP, MQTT, Redis, WebSockets, C++ Streams, etc
 - Easy to write new source/sends
 - Supports complex architectures
 
