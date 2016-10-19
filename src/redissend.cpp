@@ -22,6 +22,8 @@ bool RedisSend::initialize()
 
         return false;
     }
+
+    LOG(INFO) << pname(this) << "connected.";
     
     return true;
 }
