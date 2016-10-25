@@ -31,6 +31,8 @@ find_package(Mosquitto REQUIRED)
 find_package(AMQP REQUIRED)
 find_package(uWS REQUIRED)
 find_package(Doxygen)
+find_package(SWIG)
+find_package(PythonLibs)
 
 set(NANOPIPE_LIB_INCLUDES
   ${HIREDIS_INCLUDE_DIRS}
@@ -53,6 +55,7 @@ set(NANOPIPE_LIB_DEPS
 option(lib "Build Nanopipe as a dynamic library." ON)
 option(static_lib "Build Nanopipe as a static library." ON)
 option(examples "Build all examples." ON)
+option(python_bindings "Build Python bindings." ON)
 option(documentation "Create and install the HTML based API documentation (requires Doxygen)" ${DOXYGEN_FOUND})
 
 # ---------------------------------------------------------
@@ -169,6 +172,23 @@ if (examples)
     mqtt_to_redis
     amqp_to_mqtt
   )
+
+endif()
+
+# ---------------------------------------------------------
+# Python Bindings
+# ---------------------------------------------------------
+if (python_bindings)
+
+  include(${SWIG_USE_FILE})
+  include_directories(${PYTHON_INCLUDE_PATH})
+  include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+  set(CMAKE_SWIG_FLAGS "-c++")
+
+  set_source_files_properties(python/nanopipe.i PROPERTIES CPLUSPLUS ON)
+  swig_add_module(nanopipe_mod python python/nanopipe.i)
+
+  swig_link_libraries(nanopipe_mod ${PYTHON_LIBRARIES} nanopipe)
 
 endif()
 

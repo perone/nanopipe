@@ -9,6 +9,8 @@ int main(int argc, char **argv)
     AMQPSource amqp_source1("localhost", 5672, "my-queue");
     AMQPSend amqp_send1("localhost", 5672, "exch", "keylero");
     
+    WebSocketSource ws_source1;
+    
     RedisSource redis_source1("localhost", 6379, "mytopic");
     MQTTSource mqtt_source1("broker.hivemq.com", 1883, "nanopipe");
     RedisSend redis_send1("localhost", 6379, "sink");
@@ -20,6 +22,8 @@ int main(int argc, char **argv)
     redis_source1.addSend(&stream_send1);
     redis_source1.addSend(&amqp_send1);
     
+    ws_source1.addSend(&stream_send1);
+    
     mqtt_source1.addSend(&mqtt_send);
     mqtt_source1.addSend(&stream_send1);
     mqtt_source1.addSend(&redis_send1);
@@ -27,6 +31,7 @@ int main(int argc, char **argv)
     amqp_source1.addSend(&stream_send1);
 
     NanoManager manager;
+    manager.addSource(&ws_source1);
     manager.addSource(&amqp_source1);
     manager.addSource(&redis_source1);  
     manager.addSource(&mqtt_source1);
@@ -36,7 +41,7 @@ int main(int argc, char **argv)
     manager.addSend(&mqtt_send);
     manager.startAll();
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(10000));
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
     manager.stopAll();
     manager.waitAll();
